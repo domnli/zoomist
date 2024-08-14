@@ -184,6 +184,13 @@ export const ZOOMIST_METHODS: ZoomistMethods & ThisType<Zoomist> = {
     
     return this
   },
+  rotate(ratio){
+    const { rotate: oldRotate } = this.transform
+    setObject(this.transform, {
+      rotate:oldRotate + ratio
+    })
+    return this
+  },
 
   destroy(cleanStyle = false) {
     const { element, image, controller } = this

@@ -34,6 +34,7 @@ export const DEFAULT_OPTIONS: ZoomistDefaultOptions = {
   minScale: 1,
   // set initial scale of zoomist-image
   initScale: null,
+  rotateRatio:1,
   // if set to true, enable to release touch events to allow for further page scrolling when .zoomist-image is on bounds.
   dragReleaseOnBounds: false,
   // if set to true, enable to release wheel events to allow for further page scrolling when .zoomist-image is on mixScale or maxScale.
@@ -63,6 +64,7 @@ export const ZOOMER_OPTIONS: ZoomerOptions = {
   outEl: null,
   // the css selector string or a element for reset-zoomer
   resetEl: null,
+  rotateEl:null,
   // in zoomer and out zoomer will be disabled when image comes to maximin or minimum
   disabledClass: CLASS_ZOOMER_DISABLE
 }
@@ -71,7 +73,8 @@ export const ZOOMER_AUTO_GENERATED: Partial<ZoomerOptions> = {
   el: `.${CLASS_ZOOMER}`,
   inEl: `.${CLASS_ZOOMER_IN}`,
   outEl: `.${CLASS_ZOOMER_OUT}`,
-  resetEl: `.${CLASS_ZOOMER_RESET}`
+  resetEl: `.${CLASS_ZOOMER_RESET}`,
+  rotateEl: `.${CLASS_ZOOMER_RESET}`
 }
 
 

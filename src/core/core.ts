@@ -44,6 +44,7 @@ import {
   CSSVAR_IMAGE_TRANSLATE_Y,
   CSSVAR_IMAGE_SCALE,
   CSSVAR_SLIDER_VALUE,
+  CSSVAR_IMAGE_ROTATE,
   CLASS_SLIDER,
   CLASS_SLIDER_TRACK,
   CLASS_SLIDER_BAR,
@@ -70,7 +71,8 @@ import {
 import {
   zoomerIconIn,
   zoomerIconOut,
-  zoomerIconReset
+  zoomerIconReset,
+  zoomerIconRotate
 } from './template'
 import { ZOOMIST_METHODS } from './methods'
 
@@ -142,7 +144,8 @@ class Zoomist {
     this.transform = {
       scale: 0,
       translateX: 0,
-      translateY: 0
+      translateY: 0,
+      rotate:0
     }
 
     this.data = {
@@ -220,7 +223,7 @@ class Zoomist {
     setStyle(image, {
       transform: `
         translate(var(${CSSVAR_IMAGE_TRANSLATE_X}, 0px), var(${CSSVAR_IMAGE_TRANSLATE_Y}, 0px))
-        scale(var(${CSSVAR_IMAGE_SCALE}, 0))`
+        scale(var(${CSSVAR_IMAGE_SCALE}, 0)) rotate(var(${CSSVAR_IMAGE_ROTATE}, 0deg))`
     })
 
     // define scale
@@ -249,7 +252,7 @@ class Zoomist {
 
         // set zoomer buttons status
         if (zoomer && zoomer.options.disabledClass) {
-          const { zoomerInEl, zoomerOutEl, zoomerResetEl, options: { disabledClass } } = zoomer
+          const { zoomerInEl, zoomerOutEl, zoomerResetEl,zoomerRotateEl, options: { disabledClass } } = zoomer
 
           if (zoomerInEl) {
             zoomerInEl.classList[scale === maxScale ? 'add' : 'remove'](disabledClass)
@@ -297,6 +300,20 @@ class Zoomist {
       },
     })
 
+    // define rotate
+    defineProperty(this.transform, 'rotate', {
+      get() {
+        return zoomist.transform.__rotate__
+      },
+      set(val: number) {
+        const rotate = val % 4;
+        zoomist.transform.__rotate__ = rotate
+
+        setStyle(image, { [CSSVAR_IMAGE_ROTATE]: `-${rotate * 90}deg` })
+      },
+    })
+
+
     // interaction events
     this.#interact()
 
@@ -307,7 +324,8 @@ class Zoomist {
     setObject(this.transform, {
       scale: initScale!,
       translateX: 0,
-      translateY: 0
+      translateY: 0,
+      rotate:0
     })
 
     element.classList.add(CLASS_CONTAINER)
@@ -793,8 +811,8 @@ class Zoomist {
     const { element, __modules__: { zoomer } } = this
     if (!zoomer || zoomer.mounted) return;
 
-    const { options: { el, inEl, outEl, resetEl } } = zoomer
-    const zoomerButtons = [inEl, outEl, resetEl]
+    const { options: { el, inEl, outEl, resetEl,rotateEl } } = zoomer
+    const zoomerButtons = [inEl, outEl, resetEl,rotateEl]
 
     const createZoomerEl = (
       target: string | HTMLElement | null,
@@ -813,19 +831,22 @@ class Zoomist {
     const zoomerInEl = createZoomerEl(inEl, 'button', CLASS_ZOOMER_IN, ATTR_ZOOMER_IN, zoomerIconIn)
     const zoomerOutEl = createZoomerEl(outEl, 'button', CLASS_ZOOMER_OUT, ATTR_ZOOMER_OUT, zoomerIconOut)
     const zoomerResetEl = createZoomerEl(resetEl, 'button', CLASS_ZOOMER_RESET, ATTR_ZOOMER_RESET, zoomerIconReset);
+    const zoomerRotateEl = createZoomerEl(rotateEl, 'button', CLASS_ZOOMER_RESET, ATTR_ZOOMER_RESET, zoomerIconRotate);
     
     setObject(zoomer, {
       controller: new AbortController(),
       zoomerEl,
       zoomerInEl,
       zoomerOutEl,
-      zoomerResetEl
+      zoomerResetEl,
+      zoomerRotateEl
     })
 
     if (zoomerEl) {
       zoomerInEl && zoomerEl.append(zoomerInEl)
       zoomerOutEl && zoomerEl.append(zoomerOutEl)
       zoomerResetEl && zoomerEl.append(zoomerResetEl)
+      zoomerRotateEl && zoomerEl.append(zoomerRotateEl)
       el === `.${CLASS_ZOOMER}` && element.append(zoomerEl)
     }
 
@@ -836,11 +857,11 @@ class Zoomist {
 
   // zoomer event
   #useZoomer() {
-    const { options: { zoomRatio }, __modules__: { zoomer } } = this
+    const { options: { zoomRatio,rotateRatio }, __modules__: { zoomer } } = this
     const zoomist = this
     if (!zoomer) return;
 
-    const { controller, zoomerInEl, zoomerOutEl, zoomerResetEl } = zoomer
+    const { controller, zoomerInEl, zoomerOutEl, zoomerResetEl,zoomerRotateEl } = zoomer
 
     zoomerInEl && zoomerInEl.addEventListener('click', () => {
       zoomist.zoom(zoomRatio)
@@ -851,6 +872,10 @@ class Zoomist {
     zoomerResetEl && zoomerResetEl.addEventListener('click', () => {
       zoomist.reset()
     }, { signal: controller?.signal })
+    zoomerRotateEl && zoomerRotateEl.addEventListener('click', () => {
+      
+      zoomist.rotate(rotateRatio)
+    }, { signal: controller?.signal })
   }
 
   // destroy zoomer
@@ -859,7 +884,7 @@ class Zoomist {
 
     if (!zoomer || !zoomer.mounted) return;
 
-    const { options: { el, inEl, outEl, resetEl }, controller, zoomerEl, zoomerInEl, zoomerOutEl, zoomerResetEl } = zoomer
+    const { options: { el, inEl, outEl, resetEl,rotateEl }, controller, zoomerEl, zoomerInEl, zoomerOutEl, zoomerResetEl,zoomerRotateEl } = zoomer
 
     const destoryZoomerEl = (
       target: string | HTMLElement | null,
@@ -876,7 +901,8 @@ class Zoomist {
       { target: el, className: CLASS_ZOOMER, el: zoomerEl },
       { target: inEl, className: CLASS_ZOOMER_IN, el: zoomerInEl },
       { target: outEl, className: CLASS_ZOOMER_OUT, el: zoomerOutEl },
-      { target: resetEl, className: CLASS_ZOOMER_RESET, el: zoomerResetEl }
+      { target: resetEl, className: CLASS_ZOOMER_RESET, el: zoomerResetEl },
+      { target: rotateEl, className: CLASS_ZOOMER_RESET, el: zoomerRotateEl }
     ].forEach(item => destoryZoomerEl(item.target, item.className, item.el))
 
     controller?.abort()
