@@ -252,7 +252,7 @@ class Zoomist {
 
         // set zoomer buttons status
         if (zoomer && zoomer.options.disabledClass) {
-          const { zoomerInEl, zoomerOutEl, zoomerResetEl,zoomerRotateEl, options: { disabledClass } } = zoomer
+          const { zoomerInEl, zoomerOutEl, zoomerResetEl, options: { disabledClass } } = zoomer
 
           if (zoomerInEl) {
             zoomerInEl.classList[scale === maxScale ? 'add' : 'remove'](disabledClass)

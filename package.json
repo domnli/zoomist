@@ -1,6 +1,6 @@
 {
-  "name": "zoomist-src",
-  "version": "2.1.1",
+  "name": "@domnli/zoomist",
+  "version": "2.2.1",
   "description": "A TypeScript library for zooming any element. Also supports mobile devices.",
   "type": "module",
   "scripts": {
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cotton123236/zoomist.git"
+    "url": "https://github.com/domnli/zoomist.git"
   },
   "bugs": {
-    "url": "https://github.com/cotton123236/zoomist/issues"
+    "url": "https://github.com/domnli/zoomist/issues"
   },
   "keywords": [
     "image",
@@ -34,7 +34,7 @@
     "javascript",
     "front-end"
   ],
-  "author": "Wilson Wu",
+  "author": "Domnli",
   "license": "MIT",
   "devDependencies": {
     "sass": "^1.64.1",
