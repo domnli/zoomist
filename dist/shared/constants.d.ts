@@ -35,3 +35,4 @@ export declare const CSSVAR_IMAGE_SCALE: string;
 export declare const CSSVAR_IMAGE_TRANSLATE_X: string;
 export declare const CSSVAR_IMAGE_TRANSLATE_Y: string;
 export declare const CSSVAR_SLIDER_VALUE: string;
+export declare const CSSVAR_IMAGE_ROTATE: string;

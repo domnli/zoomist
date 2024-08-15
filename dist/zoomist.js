@@ -1,16 +1,16 @@
-var Zt = Object.defineProperty;
-var Vt = (s, t, e) => t in s ? Zt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
-var T = (s, t, e) => (Vt(s, typeof t != "symbol" ? t + "" : t, e), e), Ut = (s, t, e) => {
+var Ut = Object.defineProperty;
+var kt = (s, t, e) => t in s ? Ut(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
+var T = (s, t, e) => (kt(s, typeof t != "symbol" ? t + "" : t, e), e), Gt = (s, t, e) => {
   if (!t.has(s))
     throw TypeError("Cannot " + e);
 };
-var b = (s, t, e) => {
+var O = (s, t, e) => {
   if (t.has(s))
     throw TypeError("Cannot add the same private member more than once");
   t instanceof WeakSet ? t.add(s) : t.set(s, e);
 };
-var O = (s, t, e) => (Ut(s, t, "access private method"), e);
-const ot = (s) => document.contains(U(s)), Yt = (s) => {
+var v = (s, t, e) => (Gt(s, t, "access private method"), e);
+const rt = (s) => document.contains(k(s)), zt = (s) => {
   if (!s)
     return !1;
   try {
@@ -19,7 +19,7 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   } catch {
     return !1;
   }
-}, St = (s) => typeof s == "function", B = (s) => !isNaN(Number(s)), at = (s) => s == null, U = (s) => s instanceof HTMLElement ? s : document.querySelector(s), rt = (s, t) => t ? s.closest(`.${t}`) : null, w = (s) => {
+}, St = (s) => typeof s == "function", V = (s) => !isNaN(Number(s)), lt = (s) => s == null, k = (s) => s instanceof HTMLElement ? s : document.querySelector(s), ct = (s, t) => t ? s.closest(`.${t}`) : null, R = (s) => {
   const t = "touches" in s ? s.touches[0] : s;
   return {
     clientX: t.clientX,
@@ -28,33 +28,33 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
 }, W = (s) => ({
   clientX: [...s].map((t) => t.clientX).reduce((t, e) => t + e) / s.length,
   clientY: [...s].map((t) => t.clientY).reduce((t, e) => t + e) / s.length
-}), X = (s) => {
-  const { width: t, height: e, top: n, left: i, bottom: r } = s.getBoundingClientRect();
+}), Y = (s) => {
+  const { width: t, height: e, top: n, left: a, bottom: o } = s.getBoundingClientRect();
   return {
     width: t,
     height: e,
     top: n,
-    left: i,
-    bottom: r
+    left: a,
+    bottom: o
   };
 }, bt = (s) => s.length >= 2 ? Math.hypot(s[0].clientX - s[1].clientX, s[0].clientY - s[1].clientY) : 0, M = (s, t) => {
   for (const [e, n] of Object.entries(t))
     typeof n == "string" && s.style.setProperty(e, n);
-}, I = (s, t) => {
+}, x = (s, t) => {
   for (const [e, n] of Object.entries(t))
     s.setAttribute(e, n);
-}, v = (s, t) => {
+}, S = (s, t) => {
   for (const [e, n] of Object.entries(t))
     s[e] = n;
-}, R = (s, t, e) => Math.min(Math.max(s, t), e), D = (s) => {
+}, z = (s, t, e) => Math.min(Math.max(s, t), e), D = (s) => {
   const t = +(Math.round(+(s + "e+2")) + "e-2");
   return isNaN(t) ? 0 : t;
 }, Ot = (s) => {
   throw new Error(s);
-}, lt = (s) => console.warn(s), C = (s = "div", t, e, n) => {
-  const i = document.createElement(s);
-  return t && i.classList.add(...t.split(" ")), e && I(i, e), n && (i.innerHTML = n), i;
-}, p = "zoomist", kt = `${p}-container`, vt = `${p}-wrapper`, ct = `${p}-image`, Gt = `${p}-not-draggable`, jt = `${p}-not-wheelable`, x = `${p}-slider`, Pt = `${p}-slider-wrapper`, Ft = `${p}-slider-bar`, qt = `${p}-slider-button`, k = `${p}-zoomer`, Kt = `${p}-zoomer-button`, mt = `${p}-zoomer-icon`, ht = `${p}-zoomer-in`, dt = `${p}-zoomer-out`, ut = `${p}-zoomer-reset`, Jt = `${p}-zoomer-disabled`, Qt = {
+}, ht = (s) => console.warn(s), I = (s = "div", t, e, n) => {
+  const a = document.createElement(s);
+  return t && a.classList.add(...t.split(" ")), e && x(a, e), n && (a.innerHTML = n), a;
+}, p = "zoomist", jt = `${p}-container`, vt = `${p}-wrapper`, dt = `${p}-image`, Pt = `${p}-not-draggable`, Ft = `${p}-not-wheelable`, N = `${p}-slider`, qt = `${p}-slider-wrapper`, Kt = `${p}-slider-bar`, Jt = `${p}-slider-button`, G = `${p}-zoomer`, Qt = `${p}-zoomer-button`, ot = `${p}-zoomer-icon`, ut = `${p}-zoomer-in`, mt = `${p}-zoomer-out`, y = `${p}-zoomer-reset`, te = `${p}-zoomer-disabled`, ee = {
   tabindex: "0",
   role: "slider",
   "aria-label": "slider for zoomist",
@@ -67,16 +67,16 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   role: "button",
   type: "button",
   "aria-disabled": "false"
-}, te = {
-  ...ft,
-  "aria-label": "button for zoom in zoomist"
-}, ee = {
-  ...ft,
-  "aria-label": "button for zoom out zoomist"
 }, se = {
   ...ft,
+  "aria-label": "button for zoom in zoomist"
+}, ne = {
+  ...ft,
+  "aria-label": "button for zoom out zoomist"
+}, Tt = {
+  ...ft,
   "aria-label": "button for reset zoomist scale"
-}, ne = typeof window < "u" && typeof window.document < "u", L = ne && "ontouchstart" in window, ie = L ? "touchstart" : "mousedown", H = L ? "touchmove" : "mousemove", Z = L ? "touchend" : "mouseup", oe = "wheel", ae = ["left", "right", "center"], re = ["top", "bottom", "center"], Tt = "--scale", Dt = "--translate-x", wt = "--translate-y", le = "--value", Xt = {
+}, ie = typeof window < "u" && typeof window.document < "u", L = ie && "ontouchstart" in window, oe = L ? "touchstart" : "mousedown", Z = L ? "touchmove" : "mousemove", U = L ? "touchend" : "mouseup", ae = "wheel", re = ["left", "right", "center"], le = ["top", "bottom", "center"], Dt = "--scale", wt = "--translate-x", Rt = "--translate-y", ce = "--value", Yt = "--rotate", Xt = {
   // set is draggable or not
   draggable: !0,
   // set is wheelable or not
@@ -93,22 +93,23 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   minScale: 1,
   // set initial scale of zoomist-image
   initScale: null,
+  rotateRatio: 1,
   // if set to true, enable to release touch events to allow for further page scrolling when .zoomist-image is on bounds.
   dragReleaseOnBounds: !1,
   // if set to true, enable to release wheel events to allow for further page scrolling when .zoomist-image is on mixScale or maxScale.
   wheelReleaseOnMinMax: !1,
   // elements matched this class will not be dragged.
-  disableDraggingClass: Gt,
+  disableDraggingClass: Pt,
   // elements matched this class will not be zoomed by mouse wheel.
-  disableWheelingClass: jt
-}, ce = {
+  disableWheelingClass: Ft
+}, he = {
   // the css selector string or a element of the slider
   el: null,
   // the direction of the slider 'horizontal' or 'vertical'
   direction: "horizontal"
-}, he = {
-  el: `.${x}`
 }, de = {
+  el: `.${N}`
+}, ue = {
   el: null,
   // the css selector string or a element for in-zoomer
   inEl: null,
@@ -116,14 +117,16 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   outEl: null,
   // the css selector string or a element for reset-zoomer
   resetEl: null,
+  rotateEl: null,
   // in zoomer and out zoomer will be disabled when image comes to maximin or minimum
-  disabledClass: Jt
-}, ue = {
-  el: `.${k}`,
-  inEl: `.${ht}`,
-  outEl: `.${dt}`,
-  resetEl: `.${ut}`
+  disabledClass: te
 }, me = {
+  el: `.${G}`,
+  inEl: `.${ut}`,
+  outEl: `.${mt}`,
+  resetEl: `.${y}`,
+  rotateEl: `.${y}`
+}, fe = {
   // invoked when zoomist instance ready
   ready: null,
   // invoked when reset methods be used
@@ -160,31 +163,34 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   slide: null,
   // invoked when mouseup on slider
   slideEnd: null
-}, fe = {
+}, ge = {
   // slider options
   slider: null,
   // zoomer options
   zoomer: null
-}, ge = `
-<svg viewBox="0 0 12 12" class="${mt}">
+}, _e = `
+<svg viewBox="0 0 12 12" class="${ot}">
   <polygon points="12,5.5 6.5,5.5 6.5,0 5.5,0 5.5,5.5 0,5.5 0,6.5 5.5,6.5 5.5,12 6.5,12 6.5,6.5 12,6.5 "/>
 </svg>
-`, _e = `
-<svg viewBox="0 0 12 12" class="${mt}">
+`, pe = `
+<svg viewBox="0 0 12 12" class="${ot}">
   <rect y="5.5" width="12" height="1"/>
 </svg>
-`, pe = `
-<svg viewBox="0 0 12 12" class="${mt}">
+`, Ee = `
+<svg viewBox="0 0 12 12" class="${ot}">
   <path d="m7.45,1.27l.35-.22c.26-.17.34-.52.17-.78-.17-.27-.52-.34-.78-.17l-1.54.99-.19.13-.11.46,1.12,1.75c.11.17.29.26.48.26.1,0,.21-.03.31-.09.26-.17.34-.52.17-.78l-.29-.46c1.85.5,3.22,2.17,3.22,4.18,0,2.39-1.95,4.34-4.34,4.34S1.66,8.92,1.66,6.52c0-1.15.44-2.23,1.25-3.05.22-.22.22-.58,0-.8-.22-.22-.58-.22-.8,0-1.02,1.03-1.58,2.4-1.58,3.85,0,3.02,2.46,5.48,5.48,5.48s5.48-2.46,5.48-5.48c0-2.51-1.71-4.62-4.02-5.26Z"/>
 </svg>
-`, Ee = {
+`, Se = `
+<svg viewBox="0 0 1024 1024" class="${ot}">
+  <path d="M694.4 960H195.2C131.7 960 80 908.4 80 845.1V462c0-63.4 51.7-114.9 115.2-114.9h499.2c63.5 0 115.2 51.6 115.2 114.9v383.1c0 63.3-51.7 114.9-115.2 114.9zM195.2 423.7c-21.2 0-38.4 17.2-38.4 38.3v383.1c0 21.1 17.2 38.3 38.4 38.3h499.2c21.2 0 38.4-17.2 38.4-38.3V462c0-21.1-17.2-38.3-38.4-38.3H195.2z" fill="#333333" p-id="1697"></path><path d="M905.6 450.3c-14.8 0-28.9-8.6-35.2-23C788.6 240.8 592.7 213 483.2 213c-21.2 0-38.4-17.2-38.4-38.3s17.2-38.3 38.4-38.3c218.2 0 385 94.9 457.6 260.3 8.5 19.4-0.4 42-19.8 50.5-5 2.1-10.3 3.1-15.4 3.1z" fill="#333333" p-id="1698"></path><path d="M473.6 285.4c-9.8 0-19.7-3.7-27.2-11.2l-72.5-72.4c-15-15-15-39.2 0-54.2l72.5-72.4c15-15 39.3-15 54.3 0s15 39.2 0 54.2l-45.4 45.3 45.4 45.3c15 15 15 39.2 0 54.2-7.4 7.4-17.3 11.2-27.1 11.2z" fill="#333333" p-id="1699"></path>
+</svg>`, be = {
   on(s, t) {
     if (!t || !St(t))
       return this;
     const { __events__: e } = this;
     return s.split(" ").forEach((n) => {
-      const i = n;
-      e[i] || (e[i] = []), e[i].push(t);
+      const a = n;
+      e[a] || (e[a] = []), e[a].push(t);
     }), this;
   },
   emit(s, ...t) {
@@ -198,55 +204,55 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
     return e === n ? this : (this.zoomTo(n, t), this);
   },
   zoomTo(s, t = !0) {
-    const { image: e, transform: { scale: n, translateX: i, translateY: r }, options: { bounds: a } } = this;
+    const { image: e, transform: { scale: n, translateX: a, translateY: o }, options: { bounds: r } } = this;
     if (s = this.useFixedRatio(s), s === n)
       return this;
     if (this.transform.scale = s, !t)
       return this.emit("zoom", this, this.transform.scale), this;
     t = typeof t == "boolean" ? this.getContainerCenterClient() : t;
-    const { clientX: c, clientY: l } = t, { top: d, left: o, width: h, height: m } = X(e), { width: u, height: f } = this.getImageDiff(), E = s / n - 1, _ = (h / 2 - c + o) * E + i, g = (m / 2 - l + d) * E + r, S = a ? R(_, u, -u) : _, Y = a ? R(g, f, -f) : g;
-    return v(this.transform, {
-      translateX: S,
-      translateY: Y
+    const { clientX: l, clientY: c } = t, { top: h, left: i, width: d, height: _ } = Y(e), { width: u, height: f } = this.getImageDiff(), E = s / n - 1, g = (d / 2 - l + i) * E + a, m = (_ / 2 - c + h) * E + o, b = r ? z(g, u, -u) : g, w = r ? z(m, f, -f) : m;
+    return S(this.transform, {
+      translateX: b,
+      translateY: w
     }), this.emit("zoom", this, this.transform.scale), this;
   },
   move(s) {
-    const { options: { bounds: t }, transform: { translateX: e, translateY: n } } = this, { x: i, y: r } = s, { width: a, height: c } = this.getImageDiff();
-    if (B(i)) {
-      const l = e + i, d = t ? R(l, a, -a) : l;
-      this.transform.translateX = d;
+    const { options: { bounds: t }, transform: { translateX: e, translateY: n } } = this, { x: a, y: o } = s, { width: r, height: l } = this.getImageDiff();
+    if (V(a)) {
+      const c = e + a, h = t ? z(c, r, -r) : c;
+      this.transform.translateX = h;
     }
-    if (B(r)) {
-      const l = n + r, d = t ? R(l, c, -c) : l;
-      this.transform.translateY = d;
+    if (V(o)) {
+      const c = n + o, h = t ? z(c, l, -l) : c;
+      this.transform.translateY = h;
     }
     return this;
   },
   moveTo(s) {
-    const { options: { bounds: t } } = this, { x: e, y: n } = s, { width: i, height: r } = this.getImageDiff();
-    if (B(e)) {
-      const a = Number(e), c = t ? R(a, i, -i) : a;
-      this.transform.translateX = c;
+    const { options: { bounds: t } } = this, { x: e, y: n } = s, { width: a, height: o } = this.getImageDiff();
+    if (V(e)) {
+      const r = Number(e), l = t ? z(r, a, -a) : r;
+      this.transform.translateX = l;
     }
-    if (ae.some((a) => a === e)) {
-      const c = {
-        left: -i,
-        right: i,
+    if (re.some((r) => r === e)) {
+      const l = {
+        left: -a,
+        right: a,
         center: 0
       }[e];
-      this.transform.translateX = c;
+      this.transform.translateX = l;
     }
-    if (B(n)) {
-      const a = Number(n), c = t ? R(a, r, -r) : a;
-      this.transform.translateY = c;
+    if (V(n)) {
+      const r = Number(n), l = t ? z(r, o, -o) : r;
+      this.transform.translateY = l;
     }
-    if (re.some((a) => a === n)) {
-      const c = {
-        top: -r,
-        bottom: r,
+    if (le.some((r) => r === n)) {
+      const l = {
+        top: -o,
+        bottom: o,
         center: 0
       }[n];
-      this.transform.translateY = c;
+      this.transform.translateY = l;
     }
     return this;
   },
@@ -256,11 +262,17 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   },
   reset() {
     const { options: { initScale: s } } = this;
-    return v(this.transform, {
+    return S(this.transform, {
       scale: s,
       translateX: 0,
       translateY: 0
     }), this.emit("reset", this), this;
+  },
+  rotate(s) {
+    const { rotate: t } = this.transform;
+    return S(this.transform, {
+      rotate: t + s
+    }), this;
   },
   destroy(s = !1) {
     const { element: t, image: e, controller: n } = this;
@@ -268,7 +280,7 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   },
   update(s) {
     const { element: t, controller: e } = this;
-    return this.emit("beforeUpdate", this), t[p] = null, this.mounted = !1, e.abort(), this.destroyModules(), s && (this.options = Object.assign({}, Xt, Yt(s) && s)), this.init(), this.emit("update", this), this;
+    return this.emit("beforeUpdate", this), t[p] = null, this.mounted = !1, e.abort(), this.destroyModules(), s && (this.options = Object.assign({}, Xt, zt(s) && s)), this.init(), this.emit("update", this), this;
   },
   getImageData() {
     return { ...this.data.imageData };
@@ -340,10 +352,10 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   },
   // private methods
   getContainerCenterClient() {
-    const { element: s } = this, { top: t, left: e, width: n, height: i } = X(s);
+    const { element: s } = this, { top: t, left: e, width: n, height: a } = Y(s);
     return {
       clientX: e + n / 2,
-      clientY: t + i / 2
+      clientY: t + a / 2
     };
   },
   // private methods
@@ -354,36 +366,36 @@ const ot = (s) => document.contains(U(s)), Yt = (s) => {
   // private methods
   useFixedRatio(s) {
     const { options: { minScale: t, maxScale: e } } = this;
-    return R(s, t, e);
+    return z(s, t, e);
   }
-}, { defineProperty: V } = Object;
-var G, Rt, j, Lt, P, zt, F, At, q, yt, K, Mt, J, Ct, Q, It, tt, xt, et, $t, st, Nt, nt, Bt;
-class Se {
+}, { defineProperty: $ } = Object;
+var j, Lt, P, At, F, Mt, q, yt, K, Ct, J, It, Q, $t, tt, xt, et, Nt, st, Bt, nt, Ht, it, Vt;
+class Oe {
   constructor(t, e) {
     // create initial data
-    b(this, G);
+    O(this, j);
     // mount elements and bind events
-    b(this, j);
+    O(this, P);
     // resize, drag, pinch, wheel
-    b(this, P);
+    O(this, F);
     // on wheel
-    b(this, F);
+    O(this, q);
     // on drag (mouse)
-    b(this, q);
+    O(this, K);
     // on touch (pinch and touchmove)
-    b(this, K);
+    O(this, J);
     // resize observer on element
-    b(this, J);
+    O(this, Q);
     // check modules and create
-    b(this, Q);
+    O(this, tt);
     // mount slider
-    b(this, tt);
+    O(this, et);
     // slider events
-    b(this, et);
+    O(this, st);
     // mount zoomer
-    b(this, st);
+    O(this, nt);
     // zoomer event
-    b(this, nt);
+    O(this, it);
     T(this, "element");
     T(this, "options");
     T(this, "wrapper");
@@ -395,20 +407,20 @@ class Se {
     T(this, "controller");
     T(this, "__events__");
     T(this, "__modules__");
-    t || Ot("The first argument is required."), ot(t) || Ot(`Element ${t} is not exist.`), this.element = U(t), this.options = Object.assign({}, Xt, Yt(e) && e), this.init();
+    t || Ot("The first argument is required."), rt(t) || Ot(`Element ${t} is not exist.`), this.element = k(t), this.options = Object.assign({}, Xt, zt(e) && e), this.init();
   }
   // check zoomist-image is exist
   init() {
-    const { element: t } = this, { options: { bounds: e, minScale: n, maxScale: i, initScale: r } } = this;
+    const { element: t } = this, { options: { bounds: e, minScale: n, maxScale: a, initScale: o } } = this;
     if (t[p])
       return;
     t[p] = this;
-    const a = t.querySelector(`.${vt}`), c = t.querySelector(`.${ct}`);
-    if (!a)
-      return lt(`${p} needs a ".${vt}" element.`);
-    if (!c)
-      return lt(`${p} needs a ".${ct}" element.`);
-    this.options.minScale = e && n < 1 ? 1 : n, this.options.maxScale = Math.max(i, n), this.options.initScale = R(r || n, n, i), this.wrapper = a, this.image = c, O(this, G, Rt).call(this);
+    const r = t.querySelector(`.${vt}`), l = t.querySelector(`.${dt}`);
+    if (!r)
+      return ht(`${p} needs a ".${vt}" element.`);
+    if (!l)
+      return ht(`${p} needs a ".${dt}" element.`);
+    this.options.minScale = e && n < 1 ? 1 : n, this.options.maxScale = Math.max(a, n), this.options.initScale = z(o || n, n, a), this.wrapper = r, this.image = l, v(this, j, Lt).call(this);
   }
   // destory modules
   destroyModules() {
@@ -417,49 +429,51 @@ class Se {
   }
   // destroy slider
   destroySlider() {
-    var r, a;
+    var o, r;
     const { __modules__: { slider: t } } = this;
     if (!t || !t.mounted)
       return;
     const { options: { el: e }, controller: n } = t;
-    e === `.${x}` ? (r = t.sliderEl) == null || r.remove() : (a = t.sliderTrack) == null || a.remove(), n == null || n.abort(), t.mounted = !1;
+    e === `.${N}` ? (o = t.sliderEl) == null || o.remove() : (r = t.sliderTrack) == null || r.remove(), n == null || n.abort(), t.mounted = !1;
   }
   // destroy zoomer
   destroyZoomer() {
     const { __modules__: { zoomer: t } } = this;
     if (!t || !t.mounted)
       return;
-    const { options: { el: e, inEl: n, outEl: i, resetEl: r }, controller: a, zoomerEl: c, zoomerInEl: l, zoomerOutEl: d, zoomerResetEl: o } = t, h = (m, u, f) => {
-      m === `.${u}` && (f == null || f.remove());
+    const { options: { el: e, inEl: n, outEl: a, resetEl: o, rotateEl: r }, controller: l, zoomerEl: c, zoomerInEl: h, zoomerOutEl: i, zoomerResetEl: d, zoomerRotateEl: _ } = t, u = (f, E, g) => {
+      f === `.${E}` && (g == null || g.remove());
     };
     [
-      { target: e, className: k, el: c },
-      { target: n, className: ht, el: l },
-      { target: i, className: dt, el: d },
-      { target: r, className: ut, el: o }
-    ].forEach((m) => h(m.target, m.className, m.el)), a == null || a.abort(), t.mounted = !1;
+      { target: e, className: G, el: c },
+      { target: n, className: ut, el: h },
+      { target: a, className: mt, el: i },
+      { target: o, className: y, el: d },
+      { target: r, className: y, el: _ }
+    ].forEach((f) => u(f.target, f.className, f.el)), l == null || l.abort(), t.mounted = !1;
   }
 }
-G = new WeakSet(), Rt = function() {
-  const { element: t, image: e, options: n } = this, { draggable: i, pinchable: r } = n, { offsetWidth: a, offsetHeight: c } = t, { offsetWidth: l, offsetHeight: d } = e, { width: o, height: h } = X(e);
-  if (!l || !d)
-    return lt(`The width or height of ${ct} should not be 0.`);
+j = new WeakSet(), Lt = function() {
+  const { element: t, image: e, options: n } = this, { draggable: a, pinchable: o } = n, { offsetWidth: r, offsetHeight: l } = t, { offsetWidth: c, offsetHeight: h } = e, { width: i, height: d } = Y(e);
+  if (!c || !h)
+    return ht(`The width or height of ${dt} should not be 0.`);
   if (this.transform = {
     scale: 0,
     translateX: 0,
-    translateY: 0
+    translateY: 0,
+    rotate: 0
   }, this.data = {
     imageData: {
-      originWidth: l,
-      originHeight: d,
-      width: o,
-      height: h
+      originWidth: c,
+      originHeight: h,
+      width: i,
+      height: d
     },
     containerData: {
-      width: a,
-      height: c
+      width: r,
+      height: l
     }
-  }, L && (i || r) && (this.data.touchData = {
+  }, L && (a || o) && (this.data.touchData = {
     hypot: 0,
     startX: 0,
     startY: 0,
@@ -469,290 +483,302 @@ G = new WeakSet(), Rt = function() {
     imageLeft: 0,
     widthDiff: 0,
     heightDiff: 0
-  }), !L && i && (this.data.dragData = {
+  }), !L && a && (this.data.dragData = {
     startX: 0,
     startY: 0
-  }), this.__events__ = { ...me }, n.on)
-    for (const [m, u] of Object.entries(n.on))
-      this.__events__[m] = [u];
-  if (this.__modules__ = { ...fe }, n.slider) {
-    const m = n.slider === !0 ? he : n.slider;
+  }), this.__events__ = { ...fe }, n.on)
+    for (const [_, u] of Object.entries(n.on))
+      this.__events__[_] = [u];
+  if (this.__modules__ = { ...ge }, n.slider) {
+    const _ = n.slider === !0 ? de : n.slider;
     this.__modules__.slider = {
-      options: Object.assign({}, ce, m)
+      options: Object.assign({}, he, _)
     };
   }
   if (n.zoomer) {
-    const m = n.zoomer === !0 ? ue : n.zoomer;
+    const _ = n.zoomer === !0 ? me : n.zoomer;
     this.__modules__.zoomer = {
-      options: Object.assign({}, de, m)
+      options: Object.assign({}, ue, _)
     };
   }
-  this.controller = new AbortController(), O(this, j, Lt).call(this);
-}, j = new WeakSet(), Lt = function() {
+  this.controller = new AbortController(), v(this, P, At).call(this);
+}, P = new WeakSet(), At = function() {
   if (this.mounted)
     return;
-  const { element: t, image: e, options: { minScale: n, maxScale: i, initScale: r }, __modules__: { slider: a, zoomer: c } } = this, l = this;
+  const { element: t, image: e, options: { minScale: n, maxScale: a, initScale: o }, __modules__: { slider: r, zoomer: l } } = this, c = this;
   M(e, {
     transform: `
-        translate(var(${Dt}, 0px), var(${wt}, 0px))
-        scale(var(${Tt}, 0))`
-  }), V(this.transform, "scale", {
+        translate(var(${wt}, 0px), var(${Rt}, 0px))
+        scale(var(${Dt}, 0)) rotate(var(${Yt}, 0deg))`
+  }), $(this.transform, "scale", {
     get() {
-      return l.transform.__scale__;
+      return c.transform.__scale__;
     },
-    set(d) {
-      const o = l.useFixedRatio(d);
-      if (!(at(o) || l.transform.__scale__ === o)) {
-        if (l.transform.__scale__ = o, M(e, { [Tt]: o.toString() }), v(l.data.imageData, {
-          width: X(e).width,
-          height: X(e).height
-        }), a) {
-          const h = Math.round(l.getScaleRatio() * 100);
-          a.value = h;
+    set(h) {
+      const i = c.useFixedRatio(h);
+      if (!(lt(i) || c.transform.__scale__ === i)) {
+        if (c.transform.__scale__ = i, M(e, { [Dt]: i.toString() }), S(c.data.imageData, {
+          width: Y(e).width,
+          height: Y(e).height
+        }), r) {
+          const d = Math.round(c.getScaleRatio() * 100);
+          r.value = d;
         }
-        if (c && c.options.disabledClass) {
-          const { zoomerInEl: h, zoomerOutEl: m, zoomerResetEl: u, options: { disabledClass: f } } = c;
-          h && (h.classList[o === i ? "add" : "remove"](f), I(h, { "aria-disabled": o === i ? "true" : "false" })), m && (m.classList[o === n ? "add" : "remove"](f), I(m, { "aria-disabled": o === n ? "true" : "false" })), u && (u.classList[o === r ? "add" : "remove"](f), I(u, { "aria-disabled": o === r ? "true" : "false" }));
+        if (l && l.options.disabledClass) {
+          const { zoomerInEl: d, zoomerOutEl: _, zoomerResetEl: u, options: { disabledClass: f } } = l;
+          d && (d.classList[i === a ? "add" : "remove"](f), x(d, { "aria-disabled": i === a ? "true" : "false" })), _ && (_.classList[i === n ? "add" : "remove"](f), x(_, { "aria-disabled": i === n ? "true" : "false" })), u && (u.classList[i === o ? "add" : "remove"](f), x(u, { "aria-disabled": i === o ? "true" : "false" }));
         }
       }
     }
-  }), V(this.transform, "translateX", {
+  }), $(this.transform, "translateX", {
     get() {
-      return l.transform.__translateX__;
+      return c.transform.__translateX__;
     },
-    set(d) {
-      const o = D(d);
-      at(o) || l.transform.__translateX__ === o || (l.transform.__translateX__ = o, M(e, { [Dt]: `${o}px` }));
+    set(h) {
+      const i = D(h);
+      lt(i) || c.transform.__translateX__ === i || (c.transform.__translateX__ = i, M(e, { [wt]: `${i}px` }));
     }
-  }), V(this.transform, "translateY", {
+  }), $(this.transform, "translateY", {
     get() {
-      return l.transform.__translateY__;
+      return c.transform.__translateY__;
     },
-    set(d) {
-      const o = D(d);
-      at(o) || l.transform.__translateY__ === o || (l.transform.__translateY__ = o, M(e, { [wt]: `${o}px` }));
+    set(h) {
+      const i = D(h);
+      lt(i) || c.transform.__translateY__ === i || (c.transform.__translateY__ = i, M(e, { [Rt]: `${i}px` }));
     }
-  }), O(this, P, zt).call(this), O(this, Q, It).call(this), v(this.transform, {
-    scale: r,
+  }), $(this.transform, "rotate", {
+    get() {
+      return c.transform.__rotate__;
+    },
+    set(h) {
+      const i = h % 4;
+      c.transform.__rotate__ = i, M(e, { [Yt]: `-${i * 90}deg` });
+    }
+  }), v(this, F, Mt).call(this), v(this, tt, xt).call(this), S(this.transform, {
+    scale: o,
     translateX: 0,
-    translateY: 0
-  }), t.classList.add(kt), this.mounted = !0, this.emit("ready", this);
-}, P = new WeakSet(), zt = function() {
-  const { wrapper: t, options: e, controller: { signal: n } } = this, { draggable: i, pinchable: r, wheelable: a } = e;
-  if (this.states = {}, a) {
+    translateY: 0,
+    rotate: 0
+  }), t.classList.add(jt), this.mounted = !0, this.emit("ready", this);
+}, F = new WeakSet(), Mt = function() {
+  const { wrapper: t, options: e, controller: { signal: n } } = this, { draggable: a, pinchable: o, wheelable: r } = e;
+  if (this.states = {}, r) {
     this.states.wheeling = !1;
-    const c = (l) => O(this, F, At).call(this, l);
-    t.addEventListener(oe, c, { signal: n });
+    const l = (c) => v(this, q, yt).call(this, c);
+    t.addEventListener(ae, l, { signal: n });
   }
-  if (L && (i || r)) {
-    i && (this.states.dragging = !1), r && (this.states.pinching = !1);
-    const c = (l) => O(this, K, Mt).call(this, l);
-    t.addEventListener("touchstart", c, { signal: n });
+  if (L && (a || o)) {
+    a && (this.states.dragging = !1), o && (this.states.pinching = !1);
+    const l = (c) => v(this, J, It).call(this, c);
+    t.addEventListener("touchstart", l, { signal: n });
   }
-  if (!L && i) {
+  if (!L && a) {
     this.states.dragging = !1;
-    const c = (l) => O(this, q, yt).call(this, l);
-    t.addEventListener("mousedown", c, { signal: n });
+    const l = (c) => v(this, K, Ct).call(this, c);
+    t.addEventListener("mousedown", l, { signal: n });
   }
-  O(this, J, Ct).call(this);
-}, F = new WeakSet(), At = function(t) {
-  const { options: { zoomRatio: e, wheelReleaseOnMinMax: n, disableWheelingClass: i } } = this, r = (t.deltaY || t.detail) > 0 ? -1 : 1;
+  v(this, Q, $t).call(this);
+}, q = new WeakSet(), yt = function(t) {
+  const { options: { zoomRatio: e, wheelReleaseOnMinMax: n, disableWheelingClass: a } } = this, o = (t.deltaY || t.detail) > 0 ? -1 : 1;
   if (n) {
-    const a = this.isOnMinScale(), c = this.isOnMaxScale();
-    a && r === -1 || c && r === 1 || t.preventDefault();
+    const r = this.isOnMinScale(), l = this.isOnMaxScale();
+    r && o === -1 || l && o === 1 || t.preventDefault();
   } else
     t.preventDefault();
-  this.states.wheeling || rt(t.target, i) || (this.states.wheeling = !0, setTimeout(() => {
+  this.states.wheeling || ct(t.target, a) || (this.states.wheeling = !0, setTimeout(() => {
     this.states.wheeling = !1;
-  }, 30), this.zoom(r * e, w(t)), this.emit("wheel", this, this.transform.scale, t));
-}, q = new WeakSet(), yt = function(t) {
-  const { data: e, transform: n, options: { disableDraggingClass: i } } = this, { dragData: r, imageData: a } = e;
-  if (!r || !a)
+  }, 30), this.zoom(o * e, R(t)), this.emit("wheel", this, this.transform.scale, t));
+}, K = new WeakSet(), Ct = function(t) {
+  const { data: e, transform: n, options: { disableDraggingClass: a } } = this, { dragData: o, imageData: r } = e;
+  if (!o || !r)
     return;
-  const c = (o) => {
-    o && o.button !== 0 || (o.preventDefault(), !rt(o.target, i) && (v(r, {
-      startX: w(o).clientX,
-      startY: w(o).clientY
-    }), this.states.dragging = !0, this.emit("dragStart", this, { x: n.translateX, y: n.translateY }, o), document.addEventListener(H, l), document.addEventListener(Z, d)));
-  }, l = (o) => {
-    if (o.touches || !this.states.dragging)
+  const l = (i) => {
+    i && i.button !== 0 || (i.preventDefault(), !ct(i.target, a) && (S(o, {
+      startX: R(i).clientX,
+      startY: R(i).clientY
+    }), this.states.dragging = !0, this.emit("dragStart", this, { x: n.translateX, y: n.translateY }, i), document.addEventListener(Z, c), document.addEventListener(U, h)));
+  }, c = (i) => {
+    if (i.touches || !this.states.dragging)
       return;
-    o.preventDefault();
-    const h = w(o).clientX, m = w(o).clientY, u = h - r.startX + n.translateX, f = m - r.startY + n.translateY;
-    this.moveTo({ x: u, y: f }), v(r, {
-      startX: w(o).clientX,
-      startY: w(o).clientY
-    }), this.emit("drag", this, { x: u, y: f }, o);
-  }, d = (o) => {
-    o.touches || (this.states.dragging = !1, this.emit("dragEnd", this, { x: n.translateX, y: n.translateY }, o), document.removeEventListener(H, l), document.removeEventListener(Z, d));
+    i.preventDefault();
+    const d = R(i).clientX, _ = R(i).clientY, u = d - o.startX + n.translateX, f = _ - o.startY + n.translateY;
+    this.moveTo({ x: u, y: f }), S(o, {
+      startX: R(i).clientX,
+      startY: R(i).clientY
+    }), this.emit("drag", this, { x: u, y: f }, i);
+  }, h = (i) => {
+    i.touches || (this.states.dragging = !1, this.emit("dragEnd", this, { x: n.translateX, y: n.translateY }, i), document.removeEventListener(Z, c), document.removeEventListener(U, h));
   };
-  c(t);
-}, K = new WeakSet(), Mt = function(t) {
-  const { data: e, transform: n, options: { maxScale: i, minScale: r, draggable: a, pinchable: c, bounds: l, dragReleaseOnBounds: d, disableDraggingClass: o } } = this, { touchData: h, imageData: m } = e;
-  if (!h || !m)
+  l(t);
+}, J = new WeakSet(), It = function(t) {
+  const { data: e, transform: n, options: { maxScale: a, minScale: o, draggable: r, pinchable: l, bounds: c, dragReleaseOnBounds: h, disableDraggingClass: i } } = this, { touchData: d, imageData: _ } = e;
+  if (!d || !_)
     return;
-  const u = (_) => {
-    const g = _.touches;
-    if (!g)
+  const u = (g) => {
+    const m = g.touches;
+    if (!m)
       return;
-    if (l && d) {
-      const $ = this.isOnBoundX(), N = this.isOnBoundY(), z = g.length === 1 && ($ || N);
-      console.log(z), z || _.preventDefault();
+    if (c && h) {
+      const B = this.isOnBoundX(), H = this.isOnBoundY(), A = m.length === 1 && (B || H);
+      console.log(A), A || g.preventDefault();
     } else
-      _.preventDefault();
-    if (rt(_.target, o) && g.length <= 1)
+      g.preventDefault();
+    if (ct(g.target, i) && m.length <= 1)
       return;
-    const { top: S, left: Y } = X(this.image), { width: A, height: y } = this.getImageDiff();
-    v(h, {
-      hypot: bt(g),
-      startX: W(g).clientX,
-      startY: W(g).clientY,
+    const { top: b, left: w } = Y(this.image), { width: X, height: C } = this.getImageDiff();
+    S(d, {
+      hypot: bt(m),
+      startX: W(m).clientX,
+      startY: W(m).clientY,
       prevX: 0,
       prevY: 0,
-      imageTop: S,
-      imageLeft: Y,
-      widthDiff: A,
-      heightDiff: y
-    }), a && (this.states.dragging = !0, this.emit("dragStart", this, { x: n.translateX, y: n.translateY }, _)), c && g.length === 2 && (this.states.pinching = !0, this.emit("pinchStart", this, n.scale, _)), document.addEventListener("touchmove", f), document.addEventListener("touchend", E);
-  }, f = (_) => {
-    const g = _.touches;
-    if (!g)
+      imageTop: b,
+      imageLeft: w,
+      widthDiff: X,
+      heightDiff: C
+    }), r && (this.states.dragging = !0, this.emit("dragStart", this, { x: n.translateX, y: n.translateY }, g)), l && m.length === 2 && (this.states.pinching = !0, this.emit("pinchStart", this, n.scale, g)), document.addEventListener("touchmove", f), document.addEventListener("touchend", E);
+  }, f = (g) => {
+    const m = g.touches;
+    if (!m)
       return;
-    const { states: { dragging: S, pinching: Y } } = this, { top: A, left: y } = X(this.image), { width: $, height: N } = this.getImageDiff(), z = bt(g), gt = z ? z / h.hypot : 1, it = this.useFixedRatio(gt * n.scale), _t = W(g).clientX + h.prevX, pt = W(g).clientY + h.prevY;
-    if (Y && g.length === 2 && this.zoomTo(it, !1), S) {
-      const Et = it !== i && it !== r && c ? gt : 1, Wt = D(_t - h.imageLeft - ($ - h.widthDiff) - (h.startX - h.imageLeft) * Et + n.translateX), Ht = D(pt - h.imageTop - (N - h.heightDiff) - (h.startY - h.imageTop) * Et + n.translateY);
-      this.moveTo({ x: Wt, y: Ht });
+    const { states: { dragging: b, pinching: w } } = this, { top: X, left: C } = Y(this.image), { width: B, height: H } = this.getImageDiff(), A = bt(m), gt = A ? A / d.hypot : 1, at = this.useFixedRatio(gt * n.scale), _t = W(m).clientX + d.prevX, pt = W(m).clientY + d.prevY;
+    if (w && m.length === 2 && this.zoomTo(at, !1), b) {
+      const Et = at !== a && at !== o && l ? gt : 1, Wt = D(_t - d.imageLeft - (B - d.widthDiff) - (d.startX - d.imageLeft) * Et + n.translateX), Zt = D(pt - d.imageTop - (H - d.heightDiff) - (d.startY - d.imageTop) * Et + n.translateY);
+      this.moveTo({ x: Wt, y: Zt });
     }
-    v(h, {
-      hypot: z,
+    S(d, {
+      hypot: A,
       startX: _t,
       startY: pt,
-      imageTop: A,
-      imageLeft: y,
-      widthDiff: $,
-      heightDiff: N
-    }), Y && g.length === 2 && this.emit("pinch", this, n.scale, _), S && this.emit("drag", this, { x: n.translateX, y: n.translateY }, _);
-  }, E = (_) => {
-    const g = _.touches;
-    if (!g)
+      imageTop: X,
+      imageLeft: C,
+      widthDiff: B,
+      heightDiff: H
+    }), w && m.length === 2 && this.emit("pinch", this, n.scale, g), b && this.emit("drag", this, { x: n.translateX, y: n.translateY }, g);
+  }, E = (g) => {
+    const m = g.touches;
+    if (!m)
       return;
-    const { states: { dragging: S, pinching: Y } } = this;
-    if (S && !g.length && (this.states.dragging = !1, this.emit("dragEnd", this, { x: n.translateX, y: n.translateY }, _)), Y && g.length < 2 && (this.states.pinching = !1, this.emit("pinchEnd", this, n.scale, _)), S && g.length === 1) {
-      const A = w(_).clientX, y = w(_).clientY;
-      v(h, {
-        prevX: h.startX - A,
-        prevY: h.startY - y
+    const { states: { dragging: b, pinching: w } } = this;
+    if (b && !m.length && (this.states.dragging = !1, this.emit("dragEnd", this, { x: n.translateX, y: n.translateY }, g)), w && m.length < 2 && (this.states.pinching = !1, this.emit("pinchEnd", this, n.scale, g)), b && m.length === 1) {
+      const X = R(g).clientX, C = R(g).clientY;
+      S(d, {
+        prevX: d.startX - X,
+        prevY: d.startY - C
       });
     }
-    g.length || (document.removeEventListener("touchmove", f), document.removeEventListener("touchend", E));
+    m.length || (document.removeEventListener("touchmove", f), document.removeEventListener("touchend", E));
   };
   u(t);
-}, J = new WeakSet(), Ct = function() {
+}, Q = new WeakSet(), $t = function() {
   const { element: t, image: e, transform: n } = this;
   new ResizeObserver(() => {
-    const { offsetWidth: r, offsetHeight: a } = t, { width: c, height: l } = this.getContainerData();
-    if (r === c && a === l)
+    const { offsetWidth: o, offsetHeight: r } = t, { width: l, height: c } = this.getContainerData();
+    if (o === l && r === c)
       return;
-    const d = n.translateX, o = n.translateY;
-    if (d) {
-      const E = r / c * d;
+    const h = n.translateX, i = n.translateY;
+    if (h) {
+      const E = o / l * h;
       this.transform.translateX = E;
     }
-    if (o) {
-      const E = a / l * o;
+    if (i) {
+      const E = r / c * i;
       this.transform.translateY = E;
     }
-    const { offsetWidth: h, offsetHeight: m } = e, { width: u, height: f } = X(e);
-    v(this.data.containerData, {
-      width: r,
-      height: a
-    }), v(this.data.imageData, {
-      originWidth: h,
-      originHeight: m,
+    const { offsetWidth: d, offsetHeight: _ } = e, { width: u, height: f } = Y(e);
+    S(this.data.containerData, {
+      width: o,
+      height: r
+    }), S(this.data.imageData, {
+      originWidth: d,
+      originHeight: _,
       width: u,
       height: f
     }), this.emit("resize", this);
   }).observe(t);
-}, Q = new WeakSet(), It = function() {
-  const { slider: t, zoomer: e } = this.__modules__;
-  t && O(this, tt, xt).call(this), e && O(this, st, Nt).call(this);
 }, tt = new WeakSet(), xt = function() {
+  const { slider: t, zoomer: e } = this.__modules__;
+  t && v(this, et, Nt).call(this), e && v(this, nt, Ht).call(this);
+}, et = new WeakSet(), Nt = function() {
   const { element: t, __modules__: { slider: e } } = this;
   if (!e || e.mounted)
     return;
-  const { options: { el: n, direction: i } } = e, r = n === `.${x}`;
-  if (!n || !r && !ot(n))
+  const { options: { el: n, direction: a } } = e, o = n === `.${N}`;
+  if (!n || !o && !rt(n))
     return;
-  const a = r ? C("div", x) : U(n), c = C("div", Pt), l = C("span", Ft), d = C("span", qt, { ...Qt, "aria-orientation": i });
-  a.classList.add(`${x}-${i}`), V(e, "value", {
+  const r = o ? I("div", N) : k(n), l = I("div", qt), c = I("span", Kt), h = I("span", Jt, { ...ee, "aria-orientation": a });
+  r.classList.add(`${N}-${a}`), $(e, "value", {
     get() {
       return e.__value__;
     },
-    set(o) {
-      e.__value__ !== o && (e.__value__ = o, M(a, { [le]: o.toString() }), I(d, { "aria-valuenow": o.toString() }));
+    set(i) {
+      e.__value__ !== i && (e.__value__ = i, M(r, { [ce]: i.toString() }), x(h, { "aria-valuenow": i.toString() }));
     }
-  }), v(e, {
+  }), S(e, {
     value: this.getScaleRatio() * 100,
     controller: new AbortController(),
     sliding: !1,
-    sliderEl: a,
-    sliderTrack: c,
-    sliderButton: d
-  }), O(this, et, $t).call(this), c.append(l, d), a.append(c), r && t.append(a), e.mounted = !0;
-}, et = new WeakSet(), $t = function() {
+    sliderEl: r,
+    sliderTrack: l,
+    sliderButton: h
+  }), v(this, st, Bt).call(this), l.append(c, h), r.append(l), o && t.append(r), e.mounted = !0;
+}, st = new WeakSet(), Bt = function() {
   const { options: { minScale: t, maxScale: e }, __modules__: { slider: n } } = this;
   if (!n)
     return;
-  const { options: { direction: i }, controller: r, sliderEl: a, sliderTrack: c } = n;
-  if (!a || !c)
+  const { options: { direction: a }, controller: o, sliderEl: r, sliderTrack: l } = n;
+  if (!r || !l)
     return;
-  const l = i === "vertical", d = (u) => {
-    const f = X(c), E = f[l ? "height" : "width"], _ = f[l ? "bottom" : "left"], g = w(u)[l ? "clientY" : "clientX"], S = D(R((g - _) * (l ? -1 : 1) / E, 0, 1));
-    return (e - t) * S + t;
-  }, o = (u) => {
+  const c = a === "vertical", h = (u) => {
+    const f = Y(l), E = f[c ? "height" : "width"], g = f[c ? "bottom" : "left"], m = R(u)[c ? "clientY" : "clientX"], b = D(z((m - g) * (c ? -1 : 1) / E, 0, 1));
+    return (e - t) * b + t;
+  }, i = (u) => {
     if (u instanceof MouseEvent && u.button !== 0)
       return;
     n.sliding = !0;
-    const f = d(u);
-    this.zoomTo(f), this.emit("slideStart", this, this.getSliderValue(), u), document.addEventListener(H, h), document.addEventListener(Z, m);
-  }, h = (u) => {
+    const f = h(u);
+    this.zoomTo(f), this.emit("slideStart", this, this.getSliderValue(), u), document.addEventListener(Z, d), document.addEventListener(U, _);
+  }, d = (u) => {
     if (!n.sliding)
       return;
-    const f = d(u);
+    const f = h(u);
     this.zoomTo(f), this.emit("slide", this, this.getSliderValue(), u);
-  }, m = (u) => {
-    this.emit("slideEnd", this, this.getSliderValue(), u), n.sliding = !1, document.removeEventListener(H, h), document.removeEventListener(Z, m);
+  }, _ = (u) => {
+    this.emit("slideEnd", this, this.getSliderValue(), u), n.sliding = !1, document.removeEventListener(Z, d), document.removeEventListener(U, _);
   };
-  a.addEventListener(ie, o, { signal: r == null ? void 0 : r.signal });
-}, st = new WeakSet(), Nt = function() {
+  r.addEventListener(oe, i, { signal: o == null ? void 0 : o.signal });
+}, nt = new WeakSet(), Ht = function() {
   const { element: t, __modules__: { zoomer: e } } = this;
   if (!e || e.mounted)
     return;
-  const { options: { el: n, inEl: i, outEl: r, resetEl: a } } = e, c = [i, r, a], l = (u, f, E, _, g) => {
-    const S = u === `.${E}`;
-    return !u || !S && !ot(u) ? null : (E = c.includes(u) ? `${E} ${Kt}` : E, S ? C(f, E, _, g) : U(u));
-  }, d = l(n, "div", k), o = l(i, "button", ht, te, ge), h = l(r, "button", dt, ee, _e), m = l(a, "button", ut, se, pe);
-  v(e, {
+  const { options: { el: n, inEl: a, outEl: o, resetEl: r, rotateEl: l } } = e, c = [a, o, r, l], h = (E, g, m, b, w) => {
+    const X = E === `.${m}`;
+    return !E || !X && !rt(E) ? null : (m = c.includes(E) ? `${m} ${Qt}` : m, X ? I(g, m, b, w) : k(E));
+  }, i = h(n, "div", G), d = h(a, "button", ut, se, _e), _ = h(o, "button", mt, ne, pe), u = h(r, "button", y, Tt, Ee), f = h(l, "button", y, Tt, Se);
+  S(e, {
     controller: new AbortController(),
-    zoomerEl: d,
-    zoomerInEl: o,
-    zoomerOutEl: h,
-    zoomerResetEl: m
-  }), d && (o && d.append(o), h && d.append(h), m && d.append(m), n === `.${k}` && t.append(d)), O(this, nt, Bt).call(this), e.mounted = !0;
-}, nt = new WeakSet(), Bt = function() {
-  const { options: { zoomRatio: t }, __modules__: { zoomer: e } } = this, n = this;
-  if (!e)
+    zoomerEl: i,
+    zoomerInEl: d,
+    zoomerOutEl: _,
+    zoomerResetEl: u,
+    zoomerRotateEl: f
+  }), i && (d && i.append(d), _ && i.append(_), u && i.append(u), f && i.append(f), n === `.${G}` && t.append(i)), v(this, it, Vt).call(this), e.mounted = !0;
+}, it = new WeakSet(), Vt = function() {
+  const { options: { zoomRatio: t, rotateRatio: e }, __modules__: { zoomer: n } } = this, a = this;
+  if (!n)
     return;
-  const { controller: i, zoomerInEl: r, zoomerOutEl: a, zoomerResetEl: c } = e;
+  const { controller: o, zoomerInEl: r, zoomerOutEl: l, zoomerResetEl: c, zoomerRotateEl: h } = n;
   r && r.addEventListener("click", () => {
-    n.zoom(t);
-  }, { signal: i == null ? void 0 : i.signal }), a && a.addEventListener("click", () => {
-    n.zoom(-t);
-  }, { signal: i == null ? void 0 : i.signal }), c && c.addEventListener("click", () => {
-    n.reset();
-  }, { signal: i == null ? void 0 : i.signal });
+    a.zoom(t);
+  }, { signal: o == null ? void 0 : o.signal }), l && l.addEventListener("click", () => {
+    a.zoom(-t);
+  }, { signal: o == null ? void 0 : o.signal }), c && c.addEventListener("click", () => {
+    a.reset();
+  }, { signal: o == null ? void 0 : o.signal }), h && h.addEventListener("click", () => {
+    a.rotate(e);
+  }, { signal: o == null ? void 0 : o.signal });
 };
-Object.assign(Se.prototype, Ee);
+Object.assign(Oe.prototype, be);
 export {
-  Se as default
+  Oe as default
 };

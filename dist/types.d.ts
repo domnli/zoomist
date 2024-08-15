@@ -11,6 +11,7 @@ export interface ZoomistDefaultOptions {
     minScale: number;
     maxScale: number;
     initScale: number | null;
+    rotateRatio: number;
     dragReleaseOnBounds: boolean;
     wheelReleaseOnMinMax: boolean;
     disableDraggingClass: string;
@@ -31,6 +32,7 @@ export interface ZoomerOptions {
     inEl: string | HTMLElement | null;
     outEl: string | HTMLElement | null;
     resetEl: string | HTMLElement | null;
+    rotateEl: string | HTMLElement | null;
     disabledClass: string | false | null;
 }
 export interface EventOptions {
@@ -84,6 +86,7 @@ export interface ZoomistMethods {
     moveTo: (params: MoveToParams) => Zoomist;
     slideTo: (value: number) => Zoomist;
     reset: () => Zoomist;
+    rotate: (value: number) => Zoomist;
     destroy: (cleanStyle?: boolean) => null;
     update: (options?: ZoomistOptions) => Zoomist;
     getImageData: () => ImageData;
@@ -126,6 +129,7 @@ export interface ZoomistZoomer {
     zoomerInEl?: HTMLElement | null;
     zoomerOutEl?: HTMLElement | null;
     zoomerResetEl?: HTMLElement | null;
+    zoomerRotateEl?: HTMLElement | null;
     controller?: AbortController;
 }
 export interface ZoomistModules {
@@ -136,6 +140,8 @@ export interface ZoomistTransfrom {
     scale: number;
     translateX: number;
     translateY: number;
+    rotate: number;
+    __rotate__?: number;
     __scale__?: number;
     __translateX__?: number;
     __translateY__?: number;
